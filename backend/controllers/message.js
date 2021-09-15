@@ -82,8 +82,12 @@ where:{id : req.params.id}})
 
 
 exports.modifyMessage =(req, res, next)=> {
+    const token = req.headers.authorization.split (' ')[1]; 
+    const decodedToken= jwt.verify(token, `${process.env.TOKEN}` );
+    const userId = decodedToken.userId;
+
     models.Message.findOne({
-        where:{id : req.params.id}})
+        where:{id : userId}})
         .then((message)=>{
             const messageObject =  { ...req.body };
     models.Message.update(

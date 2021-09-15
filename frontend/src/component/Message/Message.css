@@ -1,0 +1,14 @@
+
+
+/* Affichage message */
+
+.message{border: 3px solid indianred;border-radius: 20px; margin: 20px }
+.user_date{ display: flex; align-items: center;justify-content: space-between;   }
+.user_date p { margin: 10px 20px;font-size: 14px;font-style: italic;}
+.content_attachment{
+    display: flex;flex-direction: column; justify-content: center; align-items: center;
+}
+
+/*bouton*/
+.bouton{ display: flex;flex-direction: row;justify-content: right; margin-right: 10px; margin-bottom: 10px;}
+.edit{ margin-right: 5px;;}
