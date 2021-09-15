@@ -5,7 +5,7 @@ const auth= require('../middleware/auth')
 
 
 router.post('/new', messageCtrl.createMessage)
-router.get('/', auth, messageCtrl.getAllMessages)
+router.get('/',auth,  messageCtrl.getAllMessages)
 
 router.delete('/:id', auth, messageCtrl.deleteMessage)
 router.get('/:id', auth, messageCtrl.getOneMessage)

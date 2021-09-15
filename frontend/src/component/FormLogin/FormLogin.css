@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 20px;
+    
+}
+
+input{
+    border-radius: 20px;
+    border: 2px solid indianredclack;
+    resize: none;
+    box-shadow: 0px 0px 5px steelblue;
+    height: 50px;
+    margin-bottom: 15px;
+}

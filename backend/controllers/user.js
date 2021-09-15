@@ -4,6 +4,8 @@ const jwt = require ('jsonwebtoken')
 const models = require('../models')
 const user = require('../models/user')
 
+
+
 // routes
 exports.signup= (req, res)=>{
     //parametre requete
@@ -85,7 +87,7 @@ models.User.findOne({
 })
 .then (user => {
     if (!user) {
-      return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+      return res.status(400).json({ error: 'Utilisateur non trouvé !' });
     }
     bcrypt.compare(password, user.password)
     .then(valid => {
