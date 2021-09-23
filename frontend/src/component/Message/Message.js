@@ -7,6 +7,9 @@ export default function Message({ messag }) {
   const userToken = localStorage.getItem("Token");
   const token = userToken;
 
+  const[isEditing, setIsEditing]= useState(false)
+  const[editContent, setEditContent]=useState('')
+
   const dateParser = (date) => {
     let newDate = new Date(date).toLocaleDateString("fr-FR", {
       year: "numeric",
@@ -18,6 +21,18 @@ export default function Message({ messag }) {
     return newDate;
   };
 
+  const handleEdit =()=>{
+    const data = {
+      content: editContent
+    }
+    axios.put(`http://localhost:5000/api/messages/${messag.id}`,data,{
+      headers: { Authorization: `Bearer ${token}` }
+  } )
+    
+    setIsEditing(false)
+
+  }
+
   return (
     <div className="message">
       <div className="user_date">
@@ -27,11 +42,16 @@ export default function Message({ messag }) {
         <p>Posté le {dateParser(messag.createdAt)}</p>
       </div>
       <div className="content_attachment">
-        <p>{messag.content}</p>
+        {isEditing ? (
+          <textarea onChange={(e)=>setEditContent(e.target.value)} autoFocus defaultValue={messag.content}></textarea>
+        ) :(<p>{messag.content}</p>)}
         <div>{messag.attachement}</div>
         </div>
         <div className="bouton">
-          <button className='edit'>Edit</button>
+          {isEditing ? (<button onClick={handleEdit}>Valider</button>
+          ):(
+          <button className='edit' onClick={()=> setIsEditing(true)}>Edit</button>)}
+          
           <button className='delete'>Delete</button>
         </div>
     </div>
